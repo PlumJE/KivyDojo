@@ -11,13 +11,12 @@ class SubGrid(MDGridLayout):
         super(SubGrid, self).__init__(**kwargs)
         self.cols = 2
 
-        self.add_widget(MDLabel(text='Kivy parrot : ', halign='right'))#1행 1열에 "Kivy parrot : "이란 라벨
-        self.kivy_output = MDLabel(text='Hello, world!', outline_color=ColorProperty())#2행 1열에 "Hello, world!"가 디폴트인 라벨
-        print(type(self.kivy_output.outline_color))
+        self.add_widget(MDLabel(text='Kivy parrot : ', halign='right')) #1행 1열에 "Kivy parrot : "이란 라벨
+        self.kivy_output = MDLabel(text='Hello, world!') #2행 1열에 "Hello, world!"가 디폴트인 라벨
         self.add_widget(self.kivy_output)
 
         self.add_widget(MDLabel(text='You : ', halign='right')) #1행 2열에 "You : "이란 라벨
-        self.user_input = MDTextField()                         #2행 2열에 사용자의 입력을 받는 텍스트필드
+        self.user_input = MDTextField() #2행 2열에 사용자의 입력을 받는 텍스트필드
         self.add_widget(self.user_input)
 
 #앱에 먼저 등장할 메인 스크린
@@ -25,7 +24,7 @@ class MainScreen(MDGridLayout):
     def __init__(self, **kwargs):
         super(MainScreen, self).__init__(**kwargs)
         self.cols = 1
-        self.subGrid = SubGrid(size_hint_y=0.8) #1행 1열에 4*4 그리드 레이아웃
+        self.subGrid = SubGrid() #1행 1열에 4*4 그리드 레이아웃
         self.add_widget(self.subGrid)
 
         self.echo_button = MDRectangleFlatButton(text='Talk to Kivy!', on_press=self.echo_func) #사용자의 입력을 Kivy앵무새가 따라하게 하는 버튼
