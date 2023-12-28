@@ -13,6 +13,7 @@ class PongPaddle(Widget):
     score = NumericProperty(0)
 
     def bounce_ball(self, ball):
+        #탁구공이 탁구채에 닿으면 튕기게 한다
         if self.collide_widget(ball):
             vx, vy = ball.velocity
             offset = (ball.center_y - self.center_y) / (self.height / 2)
@@ -31,26 +32,27 @@ class PongBall(Widget):
 
 #앱 속에서 실행될 게임 본체를 상징하는 위젯
 class PongGame(Widget):
-    ball = ObjectProperty(None)
-    player1 = ObjectProperty(None)
-    player2 = ObjectProperty(None)
+    ball = ObjectProperty(None)     #PongBall 객체이다
+    player1 = ObjectProperty(None)  #PongPaddle 객체이다
+    player2 = ObjectProperty(None)  #PongPaddle 객체이다
 
     def serve_ball(self, vel=(4, 0)):
         self.ball.center = self.center
         self.ball.velocity = vel
 
     def update(self, dt):
+        #탁구공이 움직이게 한다
         self.ball.move()
 
-        # bounce of paddles
+        #탁구공을 탁구채에 튀게 한다 
         self.player1.bounce_ball(self.ball)
         self.player2.bounce_ball(self.ball)
 
-        # bounce ball off bottom or top
+        #탁구공이 천장/바닥에 닿으면 튕기게 한다
         if (self.ball.y < self.y) or (self.ball.top > self.top):
             self.ball.velocity_y *= -1
 
-        # went of to a side to score point?
+        #공이 왼쪽/오른쪽 경계를 넘어서 가면 그에 따라 득점하게 한다
         if self.ball.x < self.x:
             self.player2.score += 1
             self.serve_ball(vel=(4, 0))
