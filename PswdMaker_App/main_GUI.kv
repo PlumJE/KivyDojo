@@ -1,0 +1,37 @@
+<PswdMakerCore>
+    orientation: 'vertical'
+    Label:
+        text: '<Password Maker!>'
+    BoxLayout:
+        Label:
+            text: 'Include'
+        BoxLayout:
+            orientation: 'vertical'
+            ToggleButton:
+                id: upper_toggle
+                text: 'Uppercase'
+            ToggleButton:
+                id: lower_toggle
+                text: 'Lowercase'
+            ToggleButton:
+                id: number_toggle
+                text: 'Numbers'
+            ToggleButton:
+                id: special_toggle
+                text: 'Specials'
+    BoxLayout:
+        Label:
+            text: 'Exclude'
+        TextInput:
+            id: exclude_textinput
+            text: 'Insert characters you wanna exclude'
+    BoxLayout:
+        Label:
+            text: 'Length'
+        TextInput:
+            id: length_textinput
+    Button:
+        text: 'GENERATE!'
+        on_release: root.generate_password()
+    TextInput:
+        id: result_textinput
