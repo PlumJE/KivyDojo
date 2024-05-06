@@ -81,7 +81,7 @@ class PswdMakerCore(BoxLayout):
             Popup(title='Error!', content=Label(text="The length must be valid integer."), size_hint = (1, 0.2), auto_dismiss = True).open()
             return
         
-        password = "".join(sample(pswd_candidates, length))
+        password = ''.join(sample(pswd_candidates, length))
         self.ids.result_textinput.text = password
 
 
