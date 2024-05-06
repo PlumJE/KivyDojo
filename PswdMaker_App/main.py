@@ -28,7 +28,7 @@ logger.addHandler(file_handler)
 # 앱의 핵심 부분을 나타내는 클래스
 class PswdMakerCore(BoxLayout):
     def include_candidates(self):
-        result = ""
+        result = ''
         if self.ids.upper_toggle.state == 'down':
             result += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
         if self.ids.lower_toggle.state == 'down':
@@ -40,7 +40,7 @@ class PswdMakerCore(BoxLayout):
 
         logger.info("include : "+result)
 
-        if result != "":
+        if result != '':
             return result
         else:
             return None
@@ -49,9 +49,9 @@ class PswdMakerCore(BoxLayout):
 
         logger.info("exclude : "+excludes)
 
-        if excludes == "" or not excludes.isspace():
+        if excludes == '' or not excludes.isspace():
             for char in excludes:
-                candidate.replace(char, '')
+                candidate = candidate.replace(char, '')
             return candidate
         else:
             return None
