@@ -28,7 +28,7 @@ logger.addHandler(file_handler)
 # 앱의 핵심 부분을 나타내는 클래스
 class PswdMakerCore(BoxLayout):
     def include_candidates(self):
-        result = ""
+        result = ''
         if self.ids.upper_toggle.state == 'down':
             result += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
         if self.ids.lower_toggle.state == 'down':
@@ -40,19 +40,19 @@ class PswdMakerCore(BoxLayout):
 
         logger.info("include : "+result)
 
-        if result != "":
+        if result != '':
             return result
         else:
             return None
-    def exclude_candidates(self, candidate):
+    def exclude_candidates(self, candidates):
         excludes = self.ids.exclude_textinput.text
 
         logger.info("exclude : "+excludes)
 
-        if excludes == "" or not excludes.isspace():
+        if excludes == '' or not excludes.isspace():
             for char in excludes:
-                candidate.replace(char, '')
-            return candidate
+                candidates = candidates.replace(char, '')
+            return candidates
         else:
             return None
     def set_length(self):
@@ -81,7 +81,7 @@ class PswdMakerCore(BoxLayout):
             Popup(title='Error!', content=Label(text="The length must be valid integer."), size_hint = (1, 0.2), auto_dismiss = True).open()
             return
         
-        password = "".join(sample(pswd_candidates, length))
+        password = ''.join(sample(pswd_candidates, length))
         self.ids.result_textinput.text = password
 
 

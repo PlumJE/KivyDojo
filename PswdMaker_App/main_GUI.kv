@@ -2,11 +2,12 @@
     orientation: 'vertical'
     Label:
         text: '<Password Maker!>'
+        font_size: '30dp'
     BoxLayout:
         Label:
             text: 'Include'
-        BoxLayout:
-            orientation: 'vertical'
+        GridLayout:
+            cols: 2
             ToggleButton:
                 id: upper_toggle
                 text: 'Uppercase'
@@ -35,3 +36,5 @@
         on_release: root.generate_password()
     TextInput:
         id: result_textinput
+    Label:
+        size_hint_y: 2
