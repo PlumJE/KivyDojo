@@ -5,7 +5,7 @@
 """
 
 import logging
-from random import sample
+from random import choice
 from traceback import format_exc
 
 from kivy.app import App
@@ -81,7 +81,9 @@ class PswdMakerCore(BoxLayout):
             Popup(title='Error!', content=Label(text="The length must be valid integer."), size_hint = (1, 0.2), auto_dismiss = True).open()
             return
         
-        password = ''.join(sample(pswd_candidates, length))
+        password = ''
+        for i in range(length):
+            password += choice(pswd_candidates)
         self.ids.result_textinput.text = password
 
 
